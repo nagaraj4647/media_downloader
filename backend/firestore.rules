@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read their own download history.
+    // All writes happen server-side via the Admin SDK (which bypasses these
+    // rules), so client-side create/update/delete is disabled entirely —
+    // this prevents users from forging history entries or reading others'.
+    match /downloads/{docId} {
+      allow read: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow write: if false;
+    }
+  }
+}

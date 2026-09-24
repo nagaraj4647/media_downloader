@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-reel-black text-reel-paper font-body;
+  background-image: theme("backgroundImage.film-grain");
+}
+
+::selection {
+  background: rgba(242, 166, 90, 0.35);
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid #f2a65a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Sprocket-hole strip — the page's signature motif, used sparingly */
+.sprocket-rail {
+  height: 10px;
+  background-image:
+    radial-gradient(circle, #0a0c10 3px, transparent 3.5px);
+  background-color: rgba(242, 166, 90, 0.25);
+  background-size: 22px 10px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+.timecode {
+  @apply font-mono text-sm tracking-wider text-reel-teal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
